@@ -26,12 +26,18 @@ in
   home.username = "jiten";
   home.homeDirectory = "/home/jiten";
 
-  home.packages = [
+  home.packages = with pkgs; [
+    git
+    git-credential-manager
   ];
 
   programs.git = {
     enable = true;
     userName = "jitensekwal";
+    userEmail = "jitensekwal44@gmail.com";
+    extraConfig.credential.helper = "manager";
+    extraConfig.credential."https://github.com".username = "jitensekwal";
+    extraConfig.credential.credentialStore = "cache";
   };
 
   programs.starship = {
